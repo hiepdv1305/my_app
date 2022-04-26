@@ -12,10 +12,10 @@
                 <a href="#"><i class="fa fa-heart"></i> Wishlist</a>
               </li>
               <li>
-                <a href="cart.html"><i class="fa fa-user"></i> My Cart</a>
+                <a href="cart"><i class="fa fa-user"></i> My Cart</a>
               </li>
               <li>
-                <a href="checkout.html"><i class="fa fa-user"></i> Checkout</a>
+                <a href="checkout"><i class="fa fa-user"></i> Checkout</a>
               </li>
               <li>
                 <a href="#"><i class="fa fa-user"></i> Login</a>
@@ -64,65 +64,83 @@
       </div>
     </div>
     <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="./"><img src="../assets/img/logo.png"></a></h1>
-                    </div>
-                </div>
-                
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="logo">
+              <h1>
+                <a href="./"><img src="../assets/img/logo.png" /></a>
+              </h1>
             </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="shopping-item">
+              <a href="cart"
+                >Cart - <span class="cart-amunt">$100</span>
+                <i class="fa fa-shopping-cart"></i>
+                <span class="product-count">5</span></a
+              >
+            </div>
+          </div>
         </div>
-    </div> <!-- End site branding area -->
-    
+      </div>
+    </div>
+    <!-- End site branding area -->
+
     <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>  
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="navbar-header">
+            <button
+              type="button"
+              class="navbar-toggle"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li v-bind:class="{ 'active' : sellected === 'home'}" @click="sellected='home'"><router-link to="/">Home</router-link></li>
+              <li v-bind:class="{ 'active' : sellected === 'singleproduct'}" @click="sellected='singleproduct'">
+                <router-link to="/singleproduct">Single product</router-link>
+              </li>
+              <li v-bind:class="{ 'active' : sellected === 'cart'}" @click="sellected='cart'"><router-link to="/cart">Cart</router-link></li>
+              <li v-bind:class="{ 'active' : sellected === 'checkout'}" @click="sellected='checkout'"><router-link to="/checkout">Checkout</router-link></li>
+              <li v-bind:class="{ 'active' : sellected === 'other'}" @click="sellected='other'"><router-link to="#">Other</router-link></li>
+              <li v-bind:class="{ 'active' : sellected === 'contact'}" @click="sellected='contact'"><router-link to="#">Contact</router-link></li>
+            </ul>
+          </div>
         </div>
-    </div> <!-- End mainmenu area -->
-    
+      </div>
+    </div>
+    <!-- End mainmenu area -->
   </div>
-  
 </template>
 <script>
 export default {
-  name: 'ScHeader',
+  name: "ScHeader",
+  data() {
+    return {
+      sellected: 'home',
+    };
+  },
+  methods: {
+  },
 };
 </script>
 <style>
+@import url("http://fonts.googleapis.com/css?family=Raleway:400,100");
+@import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300");
+@import url("http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600");
 @import "../assets/css/style.css";
 @import "../assets/css/bootstrap.min.css";
 @import "../assets/css/font-awesome.min.css";
 @import "../assets/css/owl.carousel.css";
 @import "../assets/css/responsive.css";
-@import "http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600";
-@import "http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300";
-@import "http://fonts.googleapis.com/css?family=Raleway:400,100";
 </style>
