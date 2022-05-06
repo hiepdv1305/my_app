@@ -6,19 +6,19 @@
           <div class="user-menu">
             <ul>
               <li>
-                <a href="#"><i class="fa fa-user"></i> My Account</a>
+                <router-link to="#"><i class="fa fa-user"></i> My Account</router-link>
               </li>
               <li>
-                <a href="#"><i class="fa fa-heart"></i> Wishlist</a>
+                <router-link to="#"><i class="fa fa-heart"></i> Wishlist</router-link>
               </li>
               <li>
-                <a href="cart"><i class="fa fa-user"></i> My Cart</a>
+                <router-link to="/cart"><i class="fa fa-user"></i> My Cart</router-link>
               </li>
               <li>
-                <a href="checkout"><i class="fa fa-user"></i> Checkout</a>
+                <router-link to="/checkout"><i class="fa fa-user"></i> Checkout</router-link>
               </li>
               <li>
-                <a href="#"><i class="fa fa-user"></i> Login</a>
+                <router-link to="/login"><i class="fa fa-user"></i> Login</router-link>
               </li>
             </ul>
           </div>

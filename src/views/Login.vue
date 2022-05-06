@@ -1,56 +1,76 @@
 <template>
-  <div class="container mt-5">
-    <div class="row d-flex justify-content-center">
-      <div class="col-md-6">
-        <div class="card px-5 py-5" id="form1">
-          <div class="form-data" v-if="!submitted">
-            <div class="forms-inputs mb-4">
-              <span>Email or username</span>
-              <input
-                autocomplete="off"
-                type="text"
-                v-model="email"
-                v-bind:class="{
-                  'form-control': true,
-                  'is-invalid': !validEmail(email) && emailBlured,
-                }"
-                v-on:blur="emailBlured = true"
-              />
-              <div class="invalid-feedback">A valid email is required!</div>
-            </div>
-            <div class="forms-inputs mb-4">
-              <span>Password</span>
-              <input
-                autocomplete="off"
-                type="password"
-                v-model="password"
-                v-bind:class="{
-                  'form-control': true,
-                  'is-invalid': !validPassword(password) && passwordBlured,
-                }"
-                v-on:blur="passwordBlured = true"
-              />
-              <div class="invalid-feedback">Password must be 8 character!</div>
-            </div>
-            <div class="mb-3">
-              <button
-                v-on:click.stop.prevent="submit"
-                class="btn btn-dark w-100"
-              >
-                Login
-              </button>
+  <div class="limiter">
+    <div
+      class="container-login100"
+      style="background-image: url('images/bg-01.jpg')"
+    >
+      <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+        <form class="login100-form validate-form">
+          <span class="login100-form-title p-b-49"> Login </span>
+
+          <div
+            class="wrap-input100 validate-input m-b-23"
+            data-validate="Username is reauired"
+          >
+            <span class="label-input100">Username</span>
+            <input
+              class="input100"
+              type="text"
+              name="username"
+              placeholder="Type your username"
+            />
+            <span class="focus-input100"></span>
+          </div>
+
+          <div
+            class="wrap-input100 validate-input"
+            data-validate="Password is required"
+          >
+            <span class="label-input100">Password</span>
+            <input
+              class="input100"
+              type="password"
+              name="pass"
+              placeholder="Type your password"
+            />
+            <span class="focus-input100" ></span>
+          </div>
+
+          <div class="text-right p-t-8 p-b-31">
+            <a href="#"> Forgot password? </a>
+          </div>
+
+          <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn">
+              <div class="login100-form-bgbtn"></div>
+              <button class="login100-form-btn">Login</button>
             </div>
           </div>
-          <div class="success-data" v-else>
-            <div class="text-center d-flex flex-column">
-              <i class="bx bxs-badge-check"></i>
-              <span class="text-center fs-1"
-                >You have been logged in <br />
-                Successfully</span
-              >
-            </div>
+
+          <div class="txt1 text-center p-t-54 p-b-20">
+            <span> Or Sign Up Using </span>
           </div>
-        </div>
+
+          <div class="flex-c-m">
+            <a href="#" class="login100-social-item bg1">
+              <i class="fa fa-facebook"></i>
+            </a>
+
+            <a href="#" class="login100-social-item bg2">
+              <i class="fa fa-twitter"></i>
+            </a>
+
+            <a href="#" class="login100-social-item bg3">
+              <i class="fa fa-google"></i>
+            </a>
+          </div>
+
+          <div class="flex-col-c p-t-155">
+            <span class="txt1 p-b-17"> Or Sign Up Using </span>
+
+            <router-link to="/register" class="txt2"> Sign Up </router-link>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -58,55 +78,18 @@
 
 <script>
 export default {
-  name: "login",
-  components: {},
-  data() {
-    return {
-      count: 0,
-      email: "",
-      emailBlured: false,
-      valid: false,
-      submitted: false,
-      password: "",
-      passwordBlured: false,
-    };
-  },
-  mounted() {
-    setInterval(() => {
-      ++this.count;
-    }, 1000);
-  },
-  methods: {
-    validate: function () {
-      this.emailBlured = true;
-      this.passwordBlured = true;
-      if (this.validEmail(this.email) && this.validPassword(this.password)) {
-        this.valid = true;
-      }
-    },
-
-    validEmail: function (email) {
-      var re = /(.+)@(.+){2,}\.(.+){2,}/;
-      if (re.test(email.toLowerCase())) {
-        return true;
-      }
-    },
-
-    validPassword: function (password) {
-      if (password.length > 7) {
-        return true;
-      }
-    },
-
-    submit: function () {
-      this.validate();
-      if (this.valid) {
-        this.submitted = true;
-      }
-    },
-  },
-};
+  name: "login"
+}
 </script>
 <style>
-
+@import "../assets/css/bootstrap.min.css";
+@import "../assets/css/font-awesome.min.css";
+@import "../assets/css/material-design-iconic-font.min.css";
+@import "../assets/css/animate.css";
+@import "../assets/css/hamburgers.min.css";
+@import "../assets/css/animsition.min.css";
+@import "../assets/css/select2.min.css";
+@import "../assets/css/daterangepicker.css";
+@import "../assets/css/util.css";
+@import "../assets/css/main.css";
 </style>

@@ -48,6 +48,14 @@ export default new Router({
       }
     },
     {
+      path: '/register',
+      name: 'register',
+      component: () => import(/* webpackChunkName: "contact" */ './views/Register.vue'),
+      meta: {
+        layout: 'login'
+      }
+    },
+    {
       path: '/checkout',
       name: 'checkout',
       component: () => import(/* webpackChunkName: "contact" */ './views/Checkout.vue'),
