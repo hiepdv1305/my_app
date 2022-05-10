@@ -84,7 +84,7 @@
                         <th class="product-thumbnail">&nbsp;</th>
                         <th class="product-name">Product</th>
                         <th class="product-price">Price</th>
-                        <th class="product-quantity">Quantity</th>
+                        <th class="product-quantity">Point</th>
                         <th class="product-subtotal">Total</th>
                       </tr>
                     </thead>
@@ -586,19 +586,19 @@
 
 <script>
 export default {
-  name: "cart",
+  name: 'cart',
   components: {},
-  data() {
+  data () {
     return {
-      count: 0,
-    };
+      count: 0
+    }
   },
-  mounted() {
+  mounted () {
     setInterval(() => {
-      ++this.count;
-    }, 1000);
-  },
-};
+      ++this.count
+    }, 1000)
+  }
+}
 </script>
 <style>
 @import url("http://fonts.googleapis.com/css?family=Raleway:400,100");

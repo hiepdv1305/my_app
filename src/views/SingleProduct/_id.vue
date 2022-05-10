@@ -14,51 +14,21 @@
             </div>
 
             <div class="single-sidebar">
-              <h2 class="sidebar-title">Products</h2>
-              <div class="thubmnail-recent">
+              <h2 class="sidebar-title">Events</h2>
+              <div v-for="ev in events" :key="ev.eventId">
+                  <div class="thubmnail-recent">
                 <img
-                  src="../assets/img/product-thumb-1.jpg"
+                  :src="ev.image"
                   class="recent-thumb"
                   alt=""
                 />
-                <h2><a href="">Sony Smart TV - 2015</a></h2>
+                <h2><a href="">{{ev.eventName}}</a></h2>
                 <div class="product-sidebar-price">
-                  <ins>$700.00</ins> <del>$100.00</del>
+                  <ins>{{ev.currentPoint}}/{{ev.totalPoint}}</ins>
                 </div>
               </div>
-              <div class="thubmnail-recent">
-                <img
-                  src="../assets/img/product-thumb-1.jpg"
-                  class="recent-thumb"
-                  alt=""
-                />
-                <h2><a href="">Sony Smart TV - 2015</a></h2>
-                <div class="product-sidebar-price">
-                  <ins>$700.00</ins> <del>$100.00</del>
-                </div>
               </div>
-              <div class="thubmnail-recent">
-                <img
-                  src="../assets/img/product-thumb-1.jpg"
-                  class="recent-thumb"
-                  alt=""
-                />
-                <h2><a href="">Sony Smart TV - 2015</a></h2>
-                <div class="product-sidebar-price">
-                  <ins>$700.00</ins> <del>$100.00</del>
-                </div>
-              </div>
-              <div class="thubmnail-recent">
-                <img
-                  src="../assets/img/product-thumb-1.jpg"
-                  class="recent-thumb"
-                  alt=""
-                />
-                <h2><a href="">Sony Smart TV - 2015</a></h2>
-                <div class="product-sidebar-price">
-                  <ins>$700.00</ins> <del>$100.00</del>
-                </div>
-              </div>
+
             </div>
 
             <div class="single-sidebar">
@@ -85,22 +55,22 @@
                 <div class="col-sm-6">
                   <div class="product-images">
                     <div class="product-main-img">
-                      <img src="../assets/img/product-2.jpg" alt="" />
+                      <img :src="event.image" alt="" />
                     </div>
 
                     <div class="product-gallery">
-                      <img src="../assets/img/product-thumb-1.jpg" alt="" />
-                      <img src="../assets/img/product-thumb-2.jpg" alt="" />
-                      <img src="../assets/img/product-thumb-3.jpg" alt="" />
+                      <img src="../../assets/img/product-thumb-1.jpg" alt="" />
+                      <img src="../../assets/img/product-thumb-2.jpg" alt="" />
+                      <img src="../../assets/img/product-thumb-3.jpg" alt="" />
                     </div>
                   </div>
                 </div>
 
                 <div class="col-sm-6">
                   <div class="product-inner">
-                    <h2 class="product-name">Sony Smart TV - 2015</h2>
+                    <h2 class="product-name">{{event.eventName}}</h2>
                     <div class="product-inner-price">
-                      <ins>$700.00</ins> <del>$100.00</del>
+                      <ins>{{event.currentPoint}}/{{event.totalPoint}}</ins>
                     </div>
 
                     <form action="" class="cart">
@@ -120,14 +90,6 @@
                         Add to cart
                       </button>
                     </form>
-
-                    <div class="product-inner-category">
-                      <p>
-                        Category: <a href="">Summer</a>. Tags:
-                        <a href="">awesome</a>, <a href="">best</a>,
-                        <a href="">sale</a>, <a href="">shoes</a>.
-                      </p>
-                    </div>
 
                     <div role="tabpanel">
                       <ul class="product-tab" role="tablist">
@@ -225,7 +187,7 @@
                 <div class="related-products-carousel row">
                   <div class="single-product col-md-4">
                     <div class="product-f-image">
-                      <img src="../assets/img/product-1.jpg" alt="" />
+                      <img src="../../assets/img/product-1.jpg" alt="" />
                       <div class="product-hover">
                         <a href="" class="add-to-cart-link"
                           ><i class="fa fa-shopping-cart"></i> Add to cart</a
@@ -244,7 +206,7 @@
                   </div>
                   <div class="single-product col-md-4">
                     <div class="product-f-image">
-                      <img src="../assets/img/product-2.jpg" alt="" />
+                      <img src="../../assets/img/product-2.jpg" alt="" />
                       <div class="product-hover">
                         <a href="" class="add-to-cart-link"
                           ><i class="fa fa-shopping-cart"></i> Add to cart</a
@@ -262,7 +224,7 @@
                   </div>
                   <div class="single-product col-md-4">
                     <div class="product-f-image">
-                      <img src="../assets/img/product-3.jpg" alt="" />
+                      <img src="../../assets/img/product-3.jpg" alt="" />
                       <div class="product-hover">
                         <a href="" class="add-to-cart-link"
                           ><i class="fa fa-shopping-cart"></i> Add to cart</a
@@ -290,18 +252,34 @@
 </template>
 
 <script>
+import api from '../../api/api'
 export default {
   name: 'singleproduct',
   components: {},
   data () {
     return {
-      count: 0
+      count: 0,
+      event: {},
+      events: {}
     }
   },
   mounted () {
-    setInterval(() => {
-      ++this.count
-    }, 1000)
+    this.getEvent()
+    this.getAllEvent()
+  },
+  methods: {
+    async getEvent () {
+      let id = this.$route.path.substring(1).split('/')[1]
+        console.log(id)
+      let result = await api.getEvent(id)
+        console.log(result)
+      this.event = result.data.data.Items[0]
+    },
+    async getAllEvent () {
+      let result = await api.getAllEvent()
+      console.log(result)
+      this.events = result.data.data.Items
+    }
   }
 }
 </script>
@@ -309,9 +287,9 @@ export default {
 @import url("http://fonts.googleapis.com/css?family=Raleway:400,100");
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300");
 @import url("http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600");
-@import "../assets/css/style.css";
-@import "../assets/css/bootstrap.min.css";
-@import "../assets/css/font-awesome.min.css";
-@import "../assets/css/owl.carousel.css";
-@import "../assets/css/responsive.css";
+@import "../../assets/css/style.css";
+@import "../../assets/css/bootstrap.min.css";
+@import "../../assets/css/font-awesome.min.css";
+@import "../../assets/css/owl.carousel.css";
+@import "../../assets/css/responsive.css";
 </style>

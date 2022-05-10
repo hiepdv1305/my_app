@@ -16,8 +16,8 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-      
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+
     },
     {
       path: '/contact',
@@ -28,16 +28,16 @@ export default new Router({
       }
     },
     {
-      path: '/singleproduct',
+      path: '/singleproduct/:id',
       name: 'singleproduct',
-      component: () => import(/* webpackChunkName: "contact" */ './views/SingleProduct.vue'),
-      
+      component: () => import(/* webpackChunkName: "contact" */ './views/SingleProduct/_id.vue')
+
     },
     {
       path: '/cart',
       name: 'cart',
-      component: () => import(/* webpackChunkName: "contact" */ './views/Cart.vue'),
-      
+      component: () => import(/* webpackChunkName: "contact" */ './views/Cart.vue')
+
     },
     {
       path: '/login',
@@ -58,8 +58,8 @@ export default new Router({
     {
       path: '/checkout',
       name: 'checkout',
-      component: () => import(/* webpackChunkName: "contact" */ './views/Checkout.vue'),
-      
+      component: () => import(/* webpackChunkName: "contact" */ './views/Checkout.vue')
+
     },
     {
       path: '*',

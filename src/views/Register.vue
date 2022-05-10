@@ -4,47 +4,41 @@
       style="background-image: url('images/bg-01.jpg')"
     >
       <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-        <form class="login100-form validate-form">
+        <!-- <form class="login100-form validate-form"> -->
           <span class="login100-form-title p-b-49"> Sign Up </span>
           <div
             class="wrap-input100 validate-input m-b-23"
-            data-validate="Username is reauired"
           >
             <span class="label-input100">Fullname</span>
             <input
               v-model="schema.fullname"
               class="input100"
               type="text"
-              name="username"
-              placeholder="Type your username"
+              placeholder="Type your name"
             />
             <span class="focus-input100"></span>
           </div>
           <div
             class="wrap-input100 validate-input m-b-23"
-            data-validate="Username is reauired"
           >
             <span class="label-input100">email</span>
             <input
               v-model="schema.email"
               class="input100"
               type="text"
-              name="username"
-              placeholder="Type your username"
+              placeholder="Type your email"
             />
             <span class="focus-input100"></span>
           </div>
           <div
             class="wrap-input100 validate-input m-b-23"
-            data-validate="Username is reauired"
           >
             <span class="label-input100">Phone Number</span>
             <input
               v-model="schema.phonenumber"
               class="input100"
               type="text"
-              name="username"
-              placeholder="Type your username"
+              placeholder="Type your phone number"
             />
             <span class="focus-input100"></span>
           </div>
@@ -57,7 +51,6 @@
               v-model="schema.username"
               class="input100"
               type="text"
-              name="username"
               placeholder="Type your username"
             />
             <span class="focus-input100"></span>
@@ -72,7 +65,6 @@
               v-model="schema.password"
               class="input100"
               type="password"
-              name="pass"
               placeholder="Type your password"
             />
             <span class="focus-input100"></span>
@@ -86,7 +78,6 @@
               v-model="schema.confirmpassword"
               class="input100"
               type="password"
-              name="pass"
               placeholder="Type your password"
             />
             <span class="focus-input100"></span>
@@ -99,7 +90,7 @@
             </div>
           </div>
 
-          <div class="txt1 text-center p-t-54 p-b-20">
+          <!-- <div class="txt1 text-center p-t-54 p-b-20">
             <span> Or Sign Up Using </span>
           </div>
 
@@ -115,14 +106,14 @@
             <a href="#" class="login100-social-item bg3">
               <i class="fa fa-google"></i>
             </a>
-          </div>
+          </div> -->
 
           <div class="flex-col-c p-t-155">
             <span class="txt1 p-b-17"> Or Sign Up Using </span>
 
             <router-link to="/login" class="txt2"> Sign In </router-link>
           </div>
-        </form>
+        <!-- </form> -->
       </div>
     </div>
 </template>
@@ -130,27 +121,31 @@
 <script>
 import api from '../api/api'
 export default {
-  name: "register",
-  data() {
+  name: 'register',
+  data () {
     return {
       schema: {
-        fullname: "",
-        email: "",
-        phonenumber: "",
-        username: "",
-        password: "",
-        confirmpassword: "",
-      },
-    };
-  },
-  methods: {
-    async signup(){
-        console.log(this.schema)
-        // let result = await api.register(this.schema);
-        // console.log(result)
+        fullname: '',
+        email: '',
+        phonenumber: '',
+        username: '',
+        password: '',
+        confirmpassword: ''
+      }
     }
   },
-};
+  methods: {
+    async signup () {
+      console.log(this.schema)
+      let result = await api.register(this.schema)
+      console.log(result)
+      if (result.data.statusCode === 200) {
+        this.$router.push({ path: '/login' })
+        alert('Đăng ký tài khoản thành công')
+      }
+    }
+  }
+}
 </script>
 <style>
 @import "../assets/css/bootstrap.min.css";

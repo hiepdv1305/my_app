@@ -43,83 +43,25 @@
               <div
                 class="product-carousel row"
               >
+              <div v-for="event in events" :key="event.eventId">
                 <div class="single-product col-md-3">
                   <div class="product-f-image">
-                    <img src="../assets/img/product-2.jpg" alt="" />
+                    <img :src="event.image" alt="" />
                     <div class="product-hover">
-                      <a href="#" class="add-to-cart-link"
-                        ><i class="fa fa-shopping-cart"></i> Add to cart</a
-                      >
-                      <a href="single-product.html" class="view-details-link"
+                      <router-link :to="'/singleproduct/'+event.eventId" class="view-details-link"> See details</router-link>
+                      <!-- <a href="single-product.html" class="view-details-link"
                         ><i class="fa fa-link"></i> See details</a
-                      >
+                      > -->
                     </div>
                   </div>
 
-                  <h2>Nokia Lumia 1320</h2>
+                  <h2>{{event.eventName}}</h2>
                   <div class="product-carousel-price">
-                    <ins>$899.00</ins> <del>$999.00</del>
+                    <ins>{{event.currentPoint}}/{{event.totalPoint}}</ins>
                   </div>
                 </div>
-                <div class="single-product col-md-3">
-                  <div class="product-f-image">
-                    <img src="../assets/img/product-1.jpg" alt="" />
-                    <div class="product-hover">
-                      <a href="#" class="add-to-cart-link"
-                        ><i class="fa fa-shopping-cart"></i> Add to cart</a
-                      >
-                      <a href="single-product.html" class="view-details-link"
-                        ><i class="fa fa-link"></i> See details</a
-                      >
-                    </div>
-                  </div>
+              </div>
 
-                  <h2>
-                    <a href="single-product.html">Samsung Galaxy s5- 2015</a>
-                  </h2>
-
-                  <div class="product-carousel-price">
-                    <ins>$700.00</ins> <del>$100.00</del>
-                  </div>
-                </div>
-                <div class="single-product col-md-3">
-                  <div class="product-f-image">
-                    <img src="../assets/img/product-3.jpg" alt="" />
-                    <div class="product-hover">
-                      <a href="#" class="add-to-cart-link"
-                        ><i class="fa fa-shopping-cart"></i> Add to cart</a
-                      >
-                      <a href="single-product.html" class="view-details-link"
-                        ><i class="fa fa-link"></i> See details</a
-                      >
-                    </div>
-                  </div>
-
-                  <h2>LG Leon 2015</h2>
-
-                  <div class="product-carousel-price">
-                    <ins>$400.00</ins> <del>$425.00</del>
-                  </div>
-                </div>
-                <div class="single-product col-md-3">
-                  <div class="product-f-image">
-                    <img src="../assets/img/product-4.jpg" alt="" />
-                    <div class="product-hover">
-                      <a href="#" class="add-to-cart-link"
-                        ><i class="fa fa-shopping-cart"></i> Add to cart</a
-                      >
-                      <a href="single-product.html" class="view-details-link"
-                        ><i class="fa fa-link"></i> See details</a
-                      >
-                    </div>
-                  </div>
-
-                  <h2><a href="single-product.html">Sony microsoft</a></h2>
-
-                  <div class="product-carousel-price">
-                    <ins>$200.00</ins> <del>$225.00</del>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -361,20 +303,27 @@
 </template>
 
 <script>
+import api from '../api/api'
 export default {
-  name: "home",
+  name: 'home',
   components: {},
-  data() {
+  data () {
     return {
       count: 0,
-    };
+      events: {}
+    }
   },
-  mounted() {
-    setInterval(() => {
-      ++this.count;
-    }, 1000);
+  mounted () {
+    this.getAllEvent()
   },
-};
+  methods: {
+    async getAllEvent () {
+      let result = await api.getAllEvent()
+      console.log(result)
+      this.events = result.data.data.Items
+    }
+  }
+}
 </script>
 <style>
 @import url("http://fonts.googleapis.com/css?family=Raleway:400,100");

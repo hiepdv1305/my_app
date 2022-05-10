@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-md-8">
           <div class="user-menu">
-            <ul>
+            <ul v-if="this.user.username">
               <li>
-                <router-link to="#"><i class="fa fa-user"></i> My Account</router-link>
+                <router-link to="#"><i class="fa fa-user"></i> {{this.user.username}}</router-link>
               </li>
               <li>
                 <router-link to="#"><i class="fa fa-heart"></i> Wishlist</router-link>
@@ -16,6 +16,14 @@
               </li>
               <li>
                 <router-link to="/checkout"><i class="fa fa-user"></i> Checkout</router-link>
+              </li>
+              <li>
+                <router-link to="/login"><i class="fa fa-user"></i> Logout</router-link>
+              </li>
+            </ul>
+            <ul v-else>
+              <li>
+                <router-link to="/register"><i class="fa fa-user"></i> Register</router-link>
               </li>
               <li>
                 <router-link to="/login"><i class="fa fa-user"></i> Login</router-link>
@@ -107,9 +115,6 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li v-bind:class="{ 'active' : sellected === 'home'}" @click="sellected='home'"><router-link to="/">Home</router-link></li>
-              <li v-bind:class="{ 'active' : sellected === 'singleproduct'}" @click="sellected='singleproduct'">
-                <router-link to="/singleproduct">Single product</router-link>
-              </li>
               <li v-bind:class="{ 'active' : sellected === 'cart'}" @click="sellected='cart'"><router-link to="/cart">Cart</router-link></li>
               <li v-bind:class="{ 'active' : sellected === 'checkout'}" @click="sellected='checkout'"><router-link to="/checkout">Checkout</router-link></li>
               <li v-bind:class="{ 'active' : sellected === 'other'}" @click="sellected='other'"><router-link to="#">Other</router-link></li>
@@ -123,16 +128,34 @@
   </div>
 </template>
 <script>
+import jwt_decode from 'jwt-decode'
 export default {
-  name: "ScHeader",
-  data() {
+  name: 'ScHeader',
+  data () {
     return {
-      sellected: 'home',
-    };
+      sellected: '',
+      user: {}
+    }
+  },
+  mounted () {
+    this.getUser()
+    this.sellected = this.$router.apps[0]._route.name
   },
   methods: {
-  },
-};
+    getUser () {
+      let token = localStorage.getItem('accessToken')
+      // console.log(token)
+      if (token) {
+        try {
+          this.user = jwt_decode(token)
+          // console.log(this.user)
+        } catch (err) {
+          console.log(err)
+        }
+      }
+    }
+  }
+}
 </script>
 <style>
 @import url("http://fonts.googleapis.com/css?family=Raleway:400,100");

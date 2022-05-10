@@ -5,7 +5,7 @@
       style="background-image: url('images/bg-01.jpg')"
     >
       <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-        <form class="login100-form validate-form">
+        <!-- <form class="login100-form validate-form"> -->
           <span class="login100-form-title p-b-49"> Login </span>
 
           <div
@@ -13,10 +13,9 @@
             data-validate="Username is reauired"
           >
             <span class="label-input100">Username</span>
-            <input
+            <input v-model="schema.username"
               class="input100"
               type="text"
-              name="username"
               placeholder="Type your username"
             />
             <span class="focus-input100"></span>
@@ -27,10 +26,9 @@
             data-validate="Password is required"
           >
             <span class="label-input100">Password</span>
-            <input
+            <input v-model="schema.password"
               class="input100"
               type="password"
-              name="pass"
               placeholder="Type your password"
             />
             <span class="focus-input100" ></span>
@@ -43,15 +41,15 @@
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
               <div class="login100-form-bgbtn"></div>
-              <button class="login100-form-btn">Login</button>
+              <button class="login100-form-btn" @click="login">Login</button>
             </div>
           </div>
 
-          <div class="txt1 text-center p-t-54 p-b-20">
+          <!-- <div class="txt1 text-center p-t-54 p-b-20">
             <span> Or Sign Up Using </span>
-          </div>
+          </div> -->
 
-          <div class="flex-c-m">
+          <!-- <div class="flex-c-m">
             <a href="#" class="login100-social-item bg1">
               <i class="fa fa-facebook"></i>
             </a>
@@ -63,22 +61,52 @@
             <a href="#" class="login100-social-item bg3">
               <i class="fa fa-google"></i>
             </a>
-          </div>
+          </div> -->
 
           <div class="flex-col-c p-t-155">
             <span class="txt1 p-b-17"> Or Sign Up Using </span>
 
             <router-link to="/register" class="txt2"> Sign Up </router-link>
           </div>
-        </form>
+        <!-- </form> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import api from '../api/api'
 export default {
-  name: "login"
+  name: 'login',
+  data () {
+    return {
+      schema: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    async login () {
+      if (this.schema.username === '') {
+        alert('validate username')
+      } else if (this.schema.password === '') {
+        alert('validate password')
+      } else {
+        try {
+          let result = await api.login(this.schema)
+          console.log(result)
+          if (result.data.statusCode === 200) {
+            localStorage.setItem('accessToken', result.data.data)
+
+            this.$router.push({ path: '/' })
+          }
+        } catch (e) {
+          alert(e.message)
+        }
+      }
+    }
+  }
 }
 </script>
 <style>
