@@ -3,13 +3,7 @@
     <header>
       <ScHeader />
     </header>
-    <div class="single-product-area">
-      <div class="zigzag-bottom"></div>
-      <div class="container">
-        <div class="row">
-          <ScSidebar />
-          <router-view />
-        </div></div></div>
+    <router-view />
     <ScFooter />
   </div>
 </template>
@@ -18,14 +12,12 @@
 import Navigation from '@/components/Navigation'
 import ScHeader from '@/components/Header.vue'
 import ScFooter from '@/components/Footer.vue'
-import ScSidebar from '@/components/Sidebar.vue'
 export default {
   name: 'defaultLayout',
   components: {
     Navigation,
     ScHeader,
-    ScFooter,
-    ScSidebar
+    ScFooter
   }
 }
 </script>

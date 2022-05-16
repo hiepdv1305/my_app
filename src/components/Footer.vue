@@ -98,7 +98,7 @@
 </template>
 <script>
 export default {
-  name: "ScFooter"
+  name: 'ScFooter'
 }
 </script>
 <style>

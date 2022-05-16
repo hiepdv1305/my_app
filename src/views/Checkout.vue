@@ -4,7 +4,7 @@
       <div class="zigzag-bottom"></div>
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <div class="single-sidebar">
               <h2 class="sidebar-title">Search Products</h2>
               <form action="">
@@ -71,7 +71,7 @@
                 <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
               </ul>
             </div>
-          </div>
+          </div> -->
 
           <div class="col-md-8">
             <div class="product-content-right">
@@ -191,13 +191,13 @@
                   name="checkout"
                 >
                   <div id="customer_details" class="col2-set">
-                    <div class="col-1">
+                    <div class="">
                       <div class="woocommerce-billing-fields">
                         <h3>Billing Details</h3>
 
                         <p
                           id="billing_first_name_field"
-                          class="form-row form-row-first validate-required"
+                          class=" validate-required"
                         >
                           <label class="" for="billing_first_name"
                             >First Name
@@ -582,19 +582,19 @@
 
 <script>
 export default {
-  name: "checkout",
+  name: 'checkout',
   components: {},
-  data() {
+  data () {
     return {
-      count: 0,
-    };
+      count: 0
+    }
   },
-  mounted() {
+  mounted () {
     setInterval(() => {
-      ++this.count;
-    }, 1000);
-  },
-};
+      ++this.count
+    }, 1000)
+  }
+}
 </script>
 <style>
 @import url("http://fonts.googleapis.com/css?family=Raleway:400,100");

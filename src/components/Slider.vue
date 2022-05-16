@@ -61,8 +61,8 @@
 </template>
 <script>
 export default {
-  name: "ScSlider",
-};
+  name: 'ScSlider'
+}
 </script>
 <style>
 @import "../assets/css/style.css";

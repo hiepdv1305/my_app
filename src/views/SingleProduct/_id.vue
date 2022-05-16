@@ -4,7 +4,7 @@
       <div class="zigzag-bottom"></div>
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <div class="single-sidebar">
               <h2 class="sidebar-title">Search Products</h2>
               <form action="">
@@ -41,14 +41,14 @@
                 <li><a href="">Sony Smart TV - 2015</a></li>
               </ul>
             </div>
-          </div>
+          </div> -->
 
           <div class="col-md-8">
             <div class="product-content-right">
               <div class="product-breadcroumb">
                 <a href="">Home</a>
                 <a href="">Category Name</a>
-                <a href="">Sony Smart TV - 2015</a>
+                <a href="">{{event.eventName}}</a>
               </div>
 
               <div class="row">
@@ -142,40 +142,6 @@
                             sodales libero.
                           </p>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="profile">
-                          <h2>Reviews</h2>
-                          <div class="submit-review">
-                            <p>
-                              <label for="name">Name</label>
-                              <input name="name" type="text" />
-                            </p>
-                            <p>
-                              <label for="email">Email</label>
-                              <input name="email" type="email" />
-                            </p>
-                            <div class="rating-chooser">
-                              <p>Your rating</p>
-
-                              <div class="rating-wrap-post">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                              </div>
-                            </div>
-                            <p>
-                              <label for="review">Your review</label>
-                              <textarea
-                                name="review"
-                                id=""
-                                cols="30"
-                                rows="10"
-                              ></textarea>
-                            </p>
-                            <p><input type="submit" value="Submit" /></p>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -265,20 +231,14 @@ export default {
   },
   mounted () {
     this.getEvent()
-    this.getAllEvent()
   },
   methods: {
     async getEvent () {
       let id = this.$route.path.substring(1).split('/')[1]
-        console.log(id)
+      console.log(id)
       let result = await api.getEvent(id)
-        console.log(result)
-      this.event = result.data.data.Items[0]
-    },
-    async getAllEvent () {
-      let result = await api.getAllEvent()
       console.log(result)
-      this.events = result.data.data.Items
+      this.event = result.data.data.Items[0]
     }
   }
 }
