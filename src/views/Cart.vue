@@ -4,7 +4,7 @@
       <div class="zigzag-bottom"></div>
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <div class="single-sidebar">
               <h2 class="sidebar-title">Search Products</h2>
               <form action="#">
@@ -71,7 +71,7 @@
                 <li><a href="#">Sony Smart TV - 2015</a></li>
               </ul>
             </div>
-          </div>
+          </div> -->
 
           <div class="col-md-8">
             <div class="product-content-right">
@@ -89,7 +89,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="cart_item">
+                      <tr v-for="event in myEvents" :key="event.eventId" class="cart_item">
                         <td class="product-remove">
                           <a title="Remove this item" class="remove" href="#"
                             >×</a
@@ -103,36 +103,26 @@
                               height="145"
                               alt="poster_1_up"
                               class="shop_thumbnail"
-                              src="../assets/img/product-thumb-2.jpg"
+                              :src="event.image"
                           /></a>
                         </td>
 
                         <td class="product-name">
-                          <a href="singleproduct">Ship Your Idea</a>
+                          <a :href="'/singleproduct/'+event.eventId">{{event.eventName}}</a>
                         </td>
 
                         <td class="product-price">
-                          <span class="amount">£15.00</span>
+                          <span class="amount">10000VND</span>
                         </td>
 
                         <td class="product-quantity">
                           <div class="quantity buttons_added">
-                            <input type="button" class="minus" value="-" />
-                            <input
-                              type="number"
-                              size="4"
-                              class="input-text qty text"
-                              title="Qty"
-                              value="1"
-                              min="0"
-                              step="1"
-                            />
-                            <input type="button" class="plus" value="+" />
+                            <span class="amount">{{event.currentPoint}}</span>
                           </div>
                         </td>
 
                         <td class="product-subtotal">
-                          <span class="amount">£15.00</span>
+                          <span class="amount">{{event.price}} VND</span>
                         </td>
                       </tr>
                       <tr>
@@ -235,7 +225,7 @@
 
                     <table cellspacing="0">
                       <tbody>
-                        <tr class="cart-subtotal">
+                        <!-- <tr class="cart-subtotal">
                           <th>Cart Subtotal</th>
                           <td><span class="amount">£15.00</span></td>
                         </tr>
@@ -243,12 +233,12 @@
                         <tr class="shipping">
                           <th>Shipping and Handling</th>
                           <td>Free Shipping</td>
-                        </tr>
+                        </tr> -->
 
                         <tr class="order-total">
                           <th>Order Total</th>
                           <td>
-                            <strong><span class="amount">£15.00</span></strong>
+                            <strong><span class="amount">{{total}} VND</span></strong>
                           </td>
                         </tr>
                       </tbody>
@@ -585,18 +575,32 @@
 </template>
 
 <script>
+import api from '../api/api'
 export default {
   name: 'cart',
   components: {},
   data () {
     return {
-      count: 0
+      count: 0,
+      myEvents: [],
+      total: 0
     }
   },
   mounted () {
-    setInterval(() => {
-      ++this.count
-    }, 1000)
+    // setInterval(() => {
+    //   ++this.count
+    // }, 1000)
+    this.getMyEvent()
+  },
+  methods: {
+    async getMyEvent () {
+      let a = await api.getMyEvent()
+      console.log(a)
+      this.myEvents = a.data.data.Items
+      this.myEvents.forEach(event => {
+        this.total += event.price
+      })
+    }
   }
 }
 </script>

@@ -15,9 +15,6 @@
                 <router-link to="/cart"><i class="fa fa-user"></i> My Cart</router-link>
               </li>
               <li>
-                <router-link to="/checkout"><i class="fa fa-user"></i> Checkout</router-link>
-              </li>
-              <li>
                 <router-link to="/login"><i class="fa fa-user"></i> Logout</router-link>
               </li>
             </ul>
@@ -84,10 +81,10 @@
 
           <div class="col-sm-6">
             <div class="shopping-item">
-              <a href="cart"
-                >Cart - <span class="cart-amunt">$100</span>
+              <a href="/cart"
+                >Cart - <span class="cart-amunt">{{total}} VND</span>
                 <i class="fa fa-shopping-cart"></i>
-                <span class="product-count">5</span></a
+                <span class="product-count">{{count}}</span></a
               >
             </div>
           </div>
@@ -116,7 +113,6 @@
             <ul class="nav navbar-nav">
               <li v-bind:class="{ 'active' : sellected === 'home'}" @click="sellected='home'"><router-link to="/">Home</router-link></li>
               <li v-bind:class="{ 'active' : sellected === 'cart'}" @click="sellected='cart'"><router-link to="/cart">Cart</router-link></li>
-              <li v-bind:class="{ 'active' : sellected === 'checkout'}" @click="sellected='checkout'"><router-link to="/checkout">Checkout</router-link></li>
               <li v-bind:class="{ 'active' : sellected === 'other'}" @click="sellected='other'"><router-link to="#">Other</router-link></li>
               <li v-bind:class="{ 'active' : sellected === 'contact'}" @click="sellected='contact'"><router-link to="#">Contact</router-link></li>
             </ul>
@@ -128,17 +124,21 @@
   </div>
 </template>
 <script>
+import api from '../api/api'
 import jwt_decode from 'jwt-decode'
 export default {
   name: 'ScHeader',
   data () {
     return {
       sellected: '',
-      user: {}
+      user: {},
+      total: 0,
+      count: 0
     }
   },
   mounted () {
     this.getUser()
+    this.getMyEvent()
     this.sellected = this.$router.apps[0]._route.name
   },
   methods: {
@@ -153,6 +153,15 @@ export default {
           console.log(err)
         }
       }
+    },
+    async getMyEvent () {
+      let a = await api.getMyEvent()
+      console.log(a)
+      this.myEvents = a.data.data.Items
+      this.myEvents.forEach(event => {
+        this.total += event.price
+        this.count += 1
+      })
     }
   }
 }

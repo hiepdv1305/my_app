@@ -75,7 +75,7 @@
 
                     <form action="" class="cart">
                       <div class="quantity">
-                        <input
+                        <!-- <input
                           type="number"
                           size="4"
                           class="input-text qty text"
@@ -84,10 +84,10 @@
                           name="quantity"
                           min="1"
                           step="1"
-                        />
+                        /> -->
                       </div>
                       <button class="add_to_cart_button" type="submit">
-                        Add to cart
+                        <router-link :to="'/checkout/'+event.eventId" class="buy-link"> Buy</router-link>
                       </button>
                     </form>
 
@@ -225,8 +225,7 @@ export default {
   data () {
     return {
       count: 0,
-      event: {},
-      events: {}
+      event: {}
     }
   },
   mounted () {

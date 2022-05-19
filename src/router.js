@@ -37,6 +37,12 @@ export default new Router({
 
     },
     {
+      path: '/checkout/:id',
+      name: 'checkout',
+      component: () => import(/* webpackChunkName: "contact" */ './views/Checkout/_id.vue')
+
+    },
+    {
       path: '/cart',
       name: 'cart',
       component: () => import(/* webpackChunkName: "contact" */ './views/Cart.vue')
@@ -58,12 +64,12 @@ export default new Router({
         layout: 'login'
       }
     },
-    {
-      path: '/checkout',
-      name: 'checkout',
-      component: () => import(/* webpackChunkName: "contact" */ './views/Checkout.vue')
+    // {
+    //   path: '/checkout',
+    //   name: 'checkout',
+    //   component: () => import(/* webpackChunkName: "contact" */ './views/Checkout.vue')
 
-    },
+    // },
     {
       path: '*',
       name: 'Error',

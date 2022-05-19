@@ -17,7 +17,7 @@
                   class="recent-thumb"
                   alt=""
                 />
-                <h2><a href="">{{ev.eventName}}</a></h2>
+                <h2><router-link :to="'/singleproduct/'+ev.eventId"> {{ev.eventName}}</router-link></h2>
                 <div class="product-sidebar-price">
                   <ins>{{ev.currentPoint}}/{{ev.totalPoint}}</ins>
                 </div>

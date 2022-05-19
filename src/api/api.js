@@ -58,6 +58,18 @@ const api = {
   },
   getEvent: (id) => {
     return axios.get(`${baseUrl}/event/get/${id}`)
+  },
+  getProduct: (id) => {
+    return axios.get(`${baseUrl}/product/get/${id}`)
+  },
+  createDeal: (body) => {
+    return axios.post(`${baseUrl}/deal/create`, body)
+  },
+  getMyEvent: () => {
+    return axios.get(`${baseUrl}/myevent/getAll`)
+  },
+  momopayment: (body) => {
+    return axios.post(`${baseUrl}/momopayment`, body)
   }
 }
 
