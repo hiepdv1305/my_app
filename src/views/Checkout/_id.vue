@@ -1,271 +1,237 @@
 <template>
-  <div>
-    <div class="single-product-area">
-      <div class="zigzag-bottom"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="product-content-right">
-              <div class="woocommerce">
-                <div class="woocommerce-info">
-                  Returning customer?
-                  <a
-                    class="showlogin"
-                    data-toggle="collapse"
-                    href="#login-form-wrap"
-                    aria-expanded="false"
-                    aria-controls="login-form-wrap"
-                    >Click here to login</a
-                  >
-                </div>
+  <div class="col-md-8">
+    <div class="product-content-right">
+      <div id="customer_details" class="">
+        <div>
+          <div class="woocommerce-billing-fields">
+            <h3>Billing Details</h3>
 
-                <!-- <div class="woocommerce-info">
-                  Have a coupon?
-                  <a
-                    class="showcoupon"
-                    data-toggle="collapse"
-                    href="#coupon-collapse-wrap"
-                    aria-expanded="false"
-                    aria-controls="coupon-collapse-wrap"
-                    >Click here to enter your code</a
-                  >
-                </div> -->
+            <p
+              id="billing_first_name_field"
+              class="validate-required"
+            >
+              <label class="" for="billing_first_name"
+                >First Name
+                <abbr title="required" class="required">*</abbr>
+              </label>
+              <input
+                type="text"
+                value=""
+                placeholder=""
+                id="billing_first_name"
+                name="billing_first_name"
+                class="input-text"
+              />
+            </p>
 
-                <!-- <form> -->
-                <div id="customer_details" class="col2-set">
-                  <div>
-                    <div class="woocommerce-billing-fields">
-                      <h3>Billing Details</h3>
+            <p
+              id="billing_last_name_field"
+              class="form-row form-row-last validate-required"
+            >
+              <label class="" for="billing_last_name"
+                >Last Name
+                <abbr title="required" class="required">*</abbr>
+              </label>
+              <input
+                type="text"
+                value=""
+                placeholder=""
+                id="billing_last_name"
+                name="billing_last_name"
+                class="input-text"
+              />
+            </p>
+            <div class="clear"></div>
 
-                      <p
-                        id="billing_first_name_field"
-                        class="validate-required"
-                      >
-                        <label class="" for="billing_first_name"
-                          >First Name
-                          <abbr title="required" class="required">*</abbr>
-                        </label>
-                        <input
-                          type="text"
-                          value=""
-                          placeholder=""
-                          id="billing_first_name"
-                          name="billing_first_name"
-                          class="input-text"
-                        />
-                      </p>
+            <p
+              id="billing_address_1_field"
+              class="
+                form-row form-row-wide
+                address-field
+                validate-required
+              "
+            >
+              <label class="" for="billing_address_1"
+                >Address
+                <abbr title="required" class="required">*</abbr>
+              </label>
+              <input
+                type="text"
+                value=""
+                placeholder="Street address"
+                id="billing_address_1"
+                name="billing_address_1"
+                class="input-text"
+              />
+            </p>
 
-                      <p
-                        id="billing_last_name_field"
-                        class="form-row form-row-last validate-required"
-                      >
-                        <label class="" for="billing_last_name"
-                          >Last Name
-                          <abbr title="required" class="required">*</abbr>
-                        </label>
-                        <input
-                          type="text"
-                          value=""
-                          placeholder=""
-                          id="billing_last_name"
-                          name="billing_last_name"
-                          class="input-text"
-                        />
-                      </p>
-                      <div class="clear"></div>
+            <p
+              id="billing_address_2_field"
+              class="form-row form-row-wide address-field"
+            >
+              <input
+                type="text"
+                value=""
+                placeholder="Apartment, suite, unit etc. (optional)"
+                id="billing_address_2"
+                name="billing_address_2"
+                class="input-text"
+              />
+            </p>
 
-                      <p
-                        id="billing_address_1_field"
-                        class="
-                          form-row form-row-wide
-                          address-field
-                          validate-required
-                        "
-                      >
-                        <label class="" for="billing_address_1"
-                          >Address
-                          <abbr title="required" class="required">*</abbr>
-                        </label>
-                        <input
-                          type="text"
-                          value=""
-                          placeholder="Street address"
-                          id="billing_address_1"
-                          name="billing_address_1"
-                          class="input-text"
-                        />
-                      </p>
+            <p
+              id="billing_city_field"
+              class="
+                form-row form-row-wide
+                address-field
+                validate-required
+              "
+              data-o_class="form-row form-row-wide address-field validate-required"
+            >
+              <label class="" for="billing_city"
+                >Town / City
+                <abbr title="required" class="required">*</abbr>
+              </label>
+              <input
+                type="text"
+                value=""
+                placeholder="Town / City"
+                id="billing_city"
+                name="billing_city"
+                class="input-text"
+              />
+            </p>
 
-                      <p
-                        id="billing_address_2_field"
-                        class="form-row form-row-wide address-field"
-                      >
-                        <input
-                          type="text"
-                          value=""
-                          placeholder="Apartment, suite, unit etc. (optional)"
-                          id="billing_address_2"
-                          name="billing_address_2"
-                          class="input-text"
-                        />
-                      </p>
+            <p
+              id="billing_state_field"
+              class="
+                form-row form-row-first
+                address-field
+                validate-state
+              "
+              data-o_class="form-row form-row-first address-field validate-state"
+            >
+              <label class="" for="billing_state">County</label>
+              <input
+                type="text"
+                id="billing_state"
+                name="billing_state"
+                placeholder="State / County"
+                value=""
+                class="input-text"
+              />
+            </p>
 
-                      <p
-                        id="billing_city_field"
-                        class="
-                          form-row form-row-wide
-                          address-field
-                          validate-required
-                        "
-                        data-o_class="form-row form-row-wide address-field validate-required"
-                      >
-                        <label class="" for="billing_city"
-                          >Town / City
-                          <abbr title="required" class="required">*</abbr>
-                        </label>
-                        <input
-                          type="text"
-                          value=""
-                          placeholder="Town / City"
-                          id="billing_city"
-                          name="billing_city"
-                          class="input-text"
-                        />
-                      </p>
+            <div class="clear"></div>
 
-                      <p
-                        id="billing_state_field"
-                        class="
-                          form-row form-row-first
-                          address-field
-                          validate-state
-                        "
-                        data-o_class="form-row form-row-first address-field validate-state"
-                      >
-                        <label class="" for="billing_state">County</label>
-                        <input
-                          type="text"
-                          id="billing_state"
-                          name="billing_state"
-                          placeholder="State / County"
-                          value=""
-                          class="input-text"
-                        />
-                      </p>
+            <p
+              id="billing_email_field"
+              class="
+                form-row form-row-first
+                validate-required validate-email
+              "
+            >
+              <label class="" for="billing_email"
+                >Email Address
+                <abbr title="required" class="required">*</abbr>
+              </label>
+              <input
+                type="text"
+                value=""
+                placeholder=""
+                id="billing_email"
+                name="billing_email"
+                class="input-text"
+              />
+            </p>
 
-                      <div class="clear"></div>
-
-                      <p
-                        id="billing_email_field"
-                        class="
-                          form-row form-row-first
-                          validate-required validate-email
-                        "
-                      >
-                        <label class="" for="billing_email"
-                          >Email Address
-                          <abbr title="required" class="required">*</abbr>
-                        </label>
-                        <input
-                          type="text"
-                          value=""
-                          placeholder=""
-                          id="billing_email"
-                          name="billing_email"
-                          class="input-text"
-                        />
-                      </p>
-
-                      <p
-                        id="billing_phone_field"
-                        class="
-                          form-row form-row-last
-                          validate-required validate-phone
-                        "
-                      >
-                        <label class="" for="billing_phone"
-                          >Phone
-                          <abbr title="required" class="required">*</abbr>
-                        </label>
-                        <input
-                          type="text"
-                          value=""
-                          placeholder=""
-                          id="billing_phone"
-                          name="billing_phone"
-                          class="input-text"
-                        />
-                      </p>
-                      <div class="clear"></div>
-                    </div>
-                  </div>
-                </div>
-
-                <h3 id="order_review_heading">Your order</h3>
-
-                <div id="order_review" style="position: relative">
-                  <table class="shop_table">
-                    <thead>
-                      <tr>
-                        <th class="product-name">Product</th>
-                        <th class="product-total">Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="cart_item">
-                        <td class="product-name">
-                          {{event.description}}
-                        </td>
-                        <td class="product-total">
-                          <span class="amount">{{event.currentPoint}}/{{ event.totalPoint }} VND</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr class="cart-subtotal">
-                        <th>Your Point</th>
-                        <td>
-                          <input
-                            v-model="point"
-                            type="number"
-                            size="4"
-                            class="input-text qty text"
-                            title="Qty"
-                            value="1"
-                            name="quantity"
-                            min="1"
-                            step="1"
-                          />
-                        </td>
-                      </tr>
-
-                      <tr class="order-total">
-                        <th>Order Total</th>
-                        <td>
-                          <strong
-                            ><span class="amount"
-                              >{{ point * 10000 }} VND</span
-                            ></strong
-                          >
-                        </td>
-                      </tr>
-                    </tfoot>
-                  </table>
-
-                  <div>
-                    <div class="form-row place-order">
-                      <button @click="momopayment">Checkout</button>
-                    </div>
-
-                    <div class="clear"></div>
-                  </div>
-                </div>
-                <!-- </form> -->
-              </div>
-            </div>
+            <p
+              id="billing_phone_field"
+              class="
+                form-row form-row-last
+                validate-required validate-phone
+              "
+            >
+              <label class="" for="billing_phone"
+                >Phone
+                <abbr title="required" class="required">*</abbr>
+              </label>
+              <input
+                type="text"
+                value=""
+                placeholder=""
+                id="billing_phone"
+                name="billing_phone"
+                class="input-text"
+              />
+            </p>
+            <div class="clear"></div>
           </div>
         </div>
       </div>
+      <div class="form-row place-order">
+        <button @click="momopayment">Checkout</button>
+      </div>
+      <!-- <h3 id="order_review_heading">Your order</h3> -->
+
+      <!-- <div id="order_review" style="position: relative">
+        <table class="shop_table">
+          <thead>
+            <tr>
+              <th class="product-name">Product</th>
+              <th class="product-total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="cart_item">
+              <td class="product-name">
+                {{event.description}}
+              </td>
+              <td class="product-total">
+                <span class="amount">{{event.currentPoint}}/{{ event.totalPoint }} VND</span>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="cart-subtotal">
+              <th>Your Point</th>
+              <td>
+                <input
+                  v-model="point"
+                  type="number"
+                  size="4"
+                  class="input-text qty text"
+                  title="Qty"
+                  value="1"
+                  name="quantity"
+                  min="1"
+                  step="1"
+                />
+              </td>
+            </tr>
+
+            <tr class="order-total">
+              <th>Order Total</th>
+              <td>
+                <strong
+                  ><span class="amount"
+                    >{{ point * 10000 }} VND</span
+                  ></strong
+                >
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div>
+          <div class="form-row place-order">
+            <button @click="momopayment">Checkout</button>
+          </div>
+
+          <div class="clear"></div>
+        </div>
+      </div> -->
+      <!-- </form> -->
     </div>
   </div>
 </template>
@@ -303,7 +269,6 @@ export default {
       })
       console.log(paymentresult)
       window.location.href = paymentresult.data.data.payUrl
-      // this.$router.push(paymentresult.data.data.payUrl)
       let eventId = this.event.eventId
       let a = await api.createDeal({
         eventId: eventId,
@@ -313,6 +278,7 @@ export default {
         price: this.point * 10000
       })
       console.log(a)
+      this.$router.push({ path: '/cart' })
     }
     // async momopayment () {
     //   var partnerCode = config.partnerCode

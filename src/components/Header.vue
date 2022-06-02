@@ -9,59 +9,24 @@
                 <router-link to="#"><i class="fa fa-user"></i> {{this.user.username}}</router-link>
               </li>
               <li>
-                <router-link to="#"><i class="fa fa-heart"></i> Wishlist</router-link>
+                <router-link to="/rechange"><i class="fa fa-arrow-circle-up"></i> Nạp tiền </router-link>
               </li>
               <li>
-                <router-link to="/cart"><i class="fa fa-user"></i> My Cart</router-link>
+                <router-link to="#"><i class="fa fa-heart"></i> Yêu thích</router-link>
               </li>
               <li>
-                <router-link to="/login"><i class="fa fa-user"></i> Logout</router-link>
+                <router-link to="/cart"><i class="fa fa-user"></i> Giỏ hàng </router-link>
+              </li>
+              <li>
+                <router-link to="/login"><i class="fa fa-user" ></i> Đăng xuất</router-link>
               </li>
             </ul>
             <ul v-else>
               <li>
-                <router-link to="/register"><i class="fa fa-user"></i> Register</router-link>
+                <router-link to="/register"><i class="fa fa-user"></i> Đăng ký</router-link>
               </li>
               <li>
-                <router-link to="/login"><i class="fa fa-user"></i> Login</router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="header-right">
-            <ul class="list-unstyled list-inline">
-              <li class="dropdown dropdown-small">
-                <a
-                  data-toggle="dropdown"
-                  data-hover="dropdown"
-                  class="dropdown-toggle"
-                  href="#"
-                  ><span class="key">currency :</span
-                  ><span class="value">USD </span><b class="caret"></b
-                ></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">USD</a></li>
-                  <li><a href="#">INR</a></li>
-                  <li><a href="#">GBP</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown dropdown-small">
-                <a
-                  data-toggle="dropdown"
-                  data-hover="dropdown"
-                  class="dropdown-toggle"
-                  href="#"
-                  ><span class="key">language :</span
-                  ><span class="value">English </span><b class="caret"></b
-                ></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">English</a></li>
-                  <li><a href="#">French</a></li>
-                  <li><a href="#">German</a></li>
-                </ul>
+                <router-link to="/"><i class="fa fa-user"></i><span @click="logOut">Đăng nhập</span>></router-link>
               </li>
             </ul>
           </div>
@@ -74,7 +39,7 @@
           <div class="col-sm-6">
             <div class="logo">
               <h1>
-                <a href="./"><img src="../assets/img/logo.png" /></a>
+                <a href="/"><img src="../assets/img/logo.png" /></a>
               </h1>
             </div>
           </div>
@@ -82,7 +47,7 @@
           <div class="col-sm-6">
             <div class="shopping-item">
               <a href="/cart"
-                >Cart - <span class="cart-amunt">{{total}} VND</span>
+                ><span class="cart-amunt">{{total}} VND</span>
                 <i class="fa fa-shopping-cart"></i>
                 <span class="product-count">{{count}}</span></a
               >
@@ -109,14 +74,6 @@
               <span class="icon-bar"></span>
             </button>
           </div>
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li v-bind:class="{ 'active' : sellected === 'home'}" @click="sellected='home'"><router-link to="/">Home</router-link></li>
-              <li v-bind:class="{ 'active' : sellected === 'cart'}" @click="sellected='cart'"><router-link to="/cart">Cart</router-link></li>
-              <li v-bind:class="{ 'active' : sellected === 'other'}" @click="sellected='other'"><router-link to="#">Other</router-link></li>
-              <li v-bind:class="{ 'active' : sellected === 'contact'}" @click="sellected='contact'"><router-link to="#">Contact</router-link></li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
@@ -142,6 +99,11 @@ export default {
     this.sellected = this.$router.apps[0]._route.name
   },
   methods: {
+    async logOut () {
+      localStorage.removeItem('accessToken')
+      window.location.replace('/')
+    },
+
     getUser () {
       let token = localStorage.getItem('accessToken')
       // console.log(token)
@@ -156,7 +118,7 @@ export default {
     },
     async getMyEvent () {
       let a = await api.getMyEvent()
-      console.log(a)
+      // console.log(a)
       this.myEvents = a.data.data.Items
       this.myEvents.forEach(event => {
         this.total += event.price

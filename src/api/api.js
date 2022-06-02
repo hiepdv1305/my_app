@@ -70,6 +70,9 @@ const api = {
   },
   momopayment: (body) => {
     return axios.post(`${baseUrl}/momopayment`, body)
+  },
+  createrechange: (body) => {
+    return axios.post(`${baseUrl}/rechange/create`, body)
   }
 }
 

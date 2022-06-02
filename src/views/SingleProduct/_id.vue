@@ -86,8 +86,8 @@
                           step="1"
                         /> -->
                       </div>
-                      <button class="add_to_cart_button" type="submit">
-                        <router-link :to="'/checkout/'+event.eventId" class="buy-link"> Buy</router-link>
+                      <button class="add_to_cart_button" type="submit" >
+                        <router-link :to="'/checkout/'+event.eventId" class="buy-link" style="color:#fff"> Buy</router-link>
                       </button>
                     </form>
 
@@ -234,9 +234,9 @@ export default {
   methods: {
     async getEvent () {
       let id = this.$route.path.substring(1).split('/')[1]
-      console.log(id)
+      // console.log(id)
       let result = await api.getEvent(id)
-      console.log(result)
+      // console.log(result)
       this.event = result.data.data.Items[0]
     }
   }
