@@ -9,6 +9,9 @@
                 <router-link to="#"><i class="fa fa-user"></i> {{this.user.username}}</router-link>
               </li>
               <li>
+                <router-link to="#"><i class="fa fa-bell"></i> Thông báo</router-link>
+              </li>
+              <li>
                 <router-link to="/rechange"><i class="fa fa-arrow-circle-up"></i> Nạp tiền </router-link>
               </li>
               <li>
@@ -47,7 +50,7 @@
           <div class="col-sm-6">
             <div class="shopping-item">
               <a href="/cart"
-                ><span class="cart-amunt">{{total}} VND</span>
+                ><span class="cart-amunt">{{total}}</span>
                 <i class="fa fa-shopping-cart"></i>
                 <span class="product-count">{{count}}</span></a
               >
@@ -124,6 +127,7 @@ export default {
         this.total += event.price
         this.count += 1
       })
+      this.total = this.total.toLocaleString('vi', { style: 'currency', currency: 'VND' })
     }
   }
 }

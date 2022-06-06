@@ -4,45 +4,6 @@
       <div class="zigzag-bottom"></div>
       <div class="container">
         <div class="row">
-          <!-- <div class="col-md-4">
-            <div class="single-sidebar">
-              <h2 class="sidebar-title">Search Products</h2>
-              <form action="">
-                <input type="text" placeholder="Search products..." />
-                <input type="submit" value="Search" />
-              </form>
-            </div>
-
-            <div class="single-sidebar">
-              <h2 class="sidebar-title">Events</h2>
-              <div v-for="ev in events" :key="ev.eventId">
-                  <div class="thubmnail-recent">
-                <img
-                  :src="ev.image"
-                  class="recent-thumb"
-                  alt=""
-                />
-                <h2><a href="">{{ev.eventName}}</a></h2>
-                <div class="product-sidebar-price">
-                  <ins>{{ev.currentPoint}}/{{ev.totalPoint}}</ins>
-                </div>
-              </div>
-              </div>
-
-            </div>
-
-            <div class="single-sidebar">
-              <h2 class="sidebar-title">Recent Posts</h2>
-              <ul>
-                <li><a href="">Sony Smart TV - 2015</a></li>
-                <li><a href="">Sony Smart TV - 2015</a></li>
-                <li><a href="">Sony Smart TV - 2015</a></li>
-                <li><a href="">Sony Smart TV - 2015</a></li>
-                <li><a href="">Sony Smart TV - 2015</a></li>
-              </ul>
-            </div>
-          </div> -->
-
           <div class="col-md-8">
             <div class="product-content-right">
               <div class="product-breadcroumb">
@@ -50,14 +11,12 @@
                 <a href="">Category Name</a>
                 <a href="">{{event.eventName}}</a>
               </div>
-
               <div class="row">
                 <div class="col-sm-6">
                   <div class="product-images">
                     <div class="product-main-img">
                       <img :src="event.image" alt="" />
                     </div>
-
                     <div class="product-gallery">
                       <img src="../../assets/img/product-thumb-1.jpg" alt="" />
                       <img src="../../assets/img/product-thumb-2.jpg" alt="" />
@@ -73,24 +32,17 @@
                       <ins>{{event.currentPoint}}/{{event.totalPoint}}</ins>
                     </div>
 
-                    <form action="" class="cart">
+                    <div class="cart">
                       <div class="quantity">
-                        <!-- <input
+                        <input v-model.number="point"
                           type="number"
-                          size="4"
-                          class="input-text qty text"
                           title="Qty"
-                          value="1"
-                          name="quantity"
-                          min="1"
-                          step="1"
-                        /> -->
+                        />
                       </div>
-                      <button class="add_to_cart_button" type="submit" >
-                        <router-link :to="'/checkout/'+event.eventId" class="buy-link" style="color:#fff"> Buy</router-link>
+                      <button class="add_to_cart_button" @click="momopayment">
+                         Buy
                       </button>
-                    </form>
-
+                    </div>
                     <div role="tabpanel">
                       <ul class="product-tab" role="tablist">
                         <li role="presentation" class="active">
@@ -225,7 +177,8 @@ export default {
   data () {
     return {
       count: 0,
-      event: {}
+      event: {},
+      point: 1
     }
   },
   mounted () {
@@ -238,6 +191,24 @@ export default {
       let result = await api.getEvent(id)
       // console.log(result)
       this.event = result.data.data.Items[0]
+    },
+    async momopayment () {
+      console.log(typeof this.point)
+      // let paymentresult = await api.momopayment({
+      //   point: this.point
+      // })
+      // console.log(paymentresult)
+      // window.location.href = paymentresult.data.data.payUrl
+      let eventId = this.event.eventId
+      let a = await api.createDeal({
+        eventId: eventId,
+        point: this.point,
+        image: this.event.image,
+        eventName: this.event.eventName,
+        price: this.point * 10000
+      })
+      console.log(a)
+      this.$router.push({ path: '/cart' })
     }
   }
 }
