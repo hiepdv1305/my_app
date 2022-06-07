@@ -3,8 +3,8 @@
   <form id="msform">
     <!-- Tittle -->
     <div class="tittle">
-      <h2>Verification Process</h2>
-      <p>In order to use this service, you have to complete this verification process</p>
+      <h2>Nạp tiền</h2>
+      <p>Làm theo hướng dẫn</p>
     </div>
     <!-- progressbar -->
     <ul id="progressbar">

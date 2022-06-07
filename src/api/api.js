@@ -73,6 +73,9 @@ const api = {
   },
   createrechange: (body) => {
     return axios.post(`${baseUrl}/rechange/create`, body)
+  },
+  getNotification: (body) => {
+    return axios.get(`${baseUrl}/user/getNotification`, body)
   }
 }
 

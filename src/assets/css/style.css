@@ -561,6 +561,7 @@ body {
 
 .single-product {
     overflow: hidden;
+    margin-bottom: 50px;
 }
 
 .single-product:hover {}

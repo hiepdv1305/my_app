@@ -43,7 +43,7 @@
                         </td>
 
                         <td class="product-price">
-                          <span class="amount">10000VND</span>
+                          <span class="amount">10000</span>
                         </td>
 
                         <td class="product-quantity">
@@ -53,7 +53,10 @@
                         </td>
 
                         <td class="product-subtotal">
-                          <span class="amount">{{event.price}} VND</span>
+                          <span class="amount">{{event.price.toLocaleString('vi', {
+        style: 'currency',
+        currency: 'VND'
+      })}}</span>
                         </td>
                       </tr>
                       <!-- <tr>
@@ -200,6 +203,10 @@ export default {
       this.myEvents = a.data.data.Items
       this.myEvents.forEach(event => {
         this.total += event.price
+      })
+      this.total = this.total.toLocaleString('vi', {
+        style: 'currency',
+        currency: 'VND'
       })
     }
   }

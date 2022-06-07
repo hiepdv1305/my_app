@@ -28,11 +28,9 @@
                 <div class="col-sm-6">
                   <div class="product-inner">
                     <h2 class="product-name">{{event.eventName}}</h2>
-                    <div class="product-inner-price">
-                      <ins>{{event.currentPoint}}/{{event.totalPoint}}</ins>
-                    </div>
-
-                    <div class="cart">
+                    <div v-if="event.status==='active'">
+                      <div class="product-inner-price"><ins>{{event.currentPoint}}/{{event.totalPoint}}</ins></div>
+                      <div class="cart single-product">
                       <div class="quantity">
                         <input v-model.number="point"
                           type="number"
@@ -43,6 +41,9 @@
                          Buy
                       </button>
                     </div>
+                    </div>
+                    <div v-else class="product-inner-price" style="color: red">Sự kiện đã kết thúc</div>
+
                     <div role="tabpanel">
                       <ul class="product-tab" role="tablist">
                         <li role="presentation" class="active">
@@ -51,7 +52,7 @@
                             aria-controls="home"
                             role="tab"
                             data-toggle="tab"
-                            >Description</a
+                            >Mô tả</a
                           >
                         </li>
                         <li role="presentation">
@@ -101,15 +102,12 @@
               </div>
 
               <div class="related-products-wrapper">
-                <h2 class="related-products-title">Related Products</h2>
+                <h2 class="related-products-title">Có thể bạn quan tâm</h2>
                 <div class="related-products-carousel row">
                   <div class="single-product col-md-4">
                     <div class="product-f-image">
                       <img src="../../assets/img/product-1.jpg" alt="" />
                       <div class="product-hover">
-                        <a href="" class="add-to-cart-link"
-                          ><i class="fa fa-shopping-cart"></i> Add to cart</a
-                        >
                         <a href="" class="view-details-link"
                           ><i class="fa fa-link"></i> See details</a
                         >

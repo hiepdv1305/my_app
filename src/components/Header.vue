@@ -6,30 +6,48 @@
           <div class="user-menu">
             <ul v-if="this.user.username">
               <li>
-                <router-link to="#"><i class="fa fa-user"></i> {{this.user.username}}</router-link>
+                <router-link to="#"
+                  ><i class="fa fa-user"></i>
+                  {{ this.user.username }}</router-link
+                >
               </li>
               <li>
-                <router-link to="#"><i class="fa fa-bell"></i> Thông báo</router-link>
+                <router-link to="#"
+                  ><i class="fa fa-bell"></i> Thông báo</router-link
+                >
               </li>
               <li>
-                <router-link to="/rechange"><i class="fa fa-arrow-circle-up"></i> Nạp tiền </router-link>
+                <router-link to="/rechange"
+                  ><i class="fa fa-arrow-circle-up"></i> Nạp tiền
+                </router-link>
               </li>
               <li>
-                <router-link to="#"><i class="fa fa-heart"></i> Yêu thích</router-link>
+                <router-link to="#"
+                  ><i class="fa fa-heart"></i> Yêu thích</router-link
+                >
               </li>
               <li>
-                <router-link to="/cart"><i class="fa fa-user"></i> Giỏ hàng </router-link>
+                <router-link to="/cart"
+                  ><i class="fa fa-user"></i> Giỏ hàng
+                </router-link>
               </li>
               <li>
-                <router-link to="/login"><i class="fa fa-user" ></i> Đăng xuất</router-link>
+                <router-link to="/login"
+                  ><i class="fa fa-user"></i> Đăng xuất</router-link
+                >
               </li>
             </ul>
             <ul v-else>
               <li>
-                <router-link to="/register"><i class="fa fa-user"></i> Đăng ký</router-link>
+                <router-link to="/register"
+                  ><i class="fa fa-user"></i> Đăng ký</router-link
+                >
               </li>
               <li>
-                <router-link to="/"><i class="fa fa-user"></i><span @click="logOut">Đăng nhập</span>></router-link>
+                <router-link to="/"
+                  ><i class="fa fa-user"></i
+                  ><span @click="logOut">Đăng nhập</span>></router-link
+                >
               </li>
             </ul>
           </div>
@@ -50,9 +68,9 @@
           <div class="col-sm-6">
             <div class="shopping-item">
               <a href="/cart"
-                ><span class="cart-amunt">{{total}}</span>
+                ><span class="cart-amunt">{{ total }}</span>
                 <i class="fa fa-shopping-cart"></i>
-                <span class="product-count">{{count}}</span></a
+                <span class="product-count">{{ count }}</span></a
               >
             </div>
           </div>
@@ -100,13 +118,20 @@ export default {
     this.getUser()
     this.getMyEvent()
     this.sellected = this.$router.apps[0]._route.name
+    // this.getNotification()
+    setInterval(() => {
+      this.getNotification()
+    }, 3000)
   },
   methods: {
     async logOut () {
       localStorage.removeItem('accessToken')
       window.location.replace('/')
     },
-
+    async getNotification () {
+      let notification = await api.getNotification()
+      console.log(notification)
+    },
     getUser () {
       let token = localStorage.getItem('accessToken')
       // console.log(token)
@@ -123,11 +148,14 @@ export default {
       let a = await api.getMyEvent()
       // console.log(a)
       this.myEvents = a.data.data.Items
-      this.myEvents.forEach(event => {
+      this.myEvents.forEach((event) => {
         this.total += event.price
         this.count += 1
       })
-      this.total = this.total.toLocaleString('vi', { style: 'currency', currency: 'VND' })
+      this.total = this.total.toLocaleString('vi', {
+        style: 'currency',
+        currency: 'VND'
+      })
     }
   }
 }
